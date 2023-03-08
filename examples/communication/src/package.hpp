@@ -6,7 +6,7 @@ namespace package{
         int number;
         float decimal;
         std::string name;
-    }
+    };
 }
 
 #include "TypeDescriptor_package.hpp"
