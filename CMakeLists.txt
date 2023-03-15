@@ -19,7 +19,7 @@ if(NOT CMAKE_CROSSCOMPILING)
     src/generator.cpp
   )
 
-  target_include_directories(recreated_goon_generator SYSTEM PRIVATE ${LLVM_INCLUDE_DIRS})
+  target_include_directories(recreated_goon_generator SYSTEM PRIVATE ${LLVM_INCLUDE_DIR})
   target_add_default_build_options(recreated_goon_generator PRIVATE)
   target_link_directories(recreated_goon_generator PRIVATE ${LLVM_LIBRARY_DIR})
   target_link_libraries(recreated_goon_generator PRIVATE clang-cpp LLVM)
