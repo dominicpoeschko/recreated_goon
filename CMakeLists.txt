@@ -19,10 +19,10 @@ if(NOT CMAKE_CROSSCOMPILING)
     src/generator.cpp
   )
 
-  target_include_directories(recreated_goon_generator SYSTEM PRIVATE ${LLVM_INCLUDE_DIRS})
+  target_include_directories(recreated_goon_generator SYSTEM PRIVATE ${LLVM_INCLUDE_DIRS} ${CLANG_INCLUDE_DIRS})
   target_add_default_build_options(recreated_goon_generator PRIVATE)
   target_link_directories(recreated_goon_generator PRIVATE ${LLVM_LIBRARY_DIR})
-  target_link_libraries(recreated_goon_generator PRIVATE clang-cpp LLVM)
+  target_link_libraries(recreated_goon_generator PRIVATE clang-cpp LLVMSupport)
 
 else()
   include(cmake_helpers/HostBuild.cmake)
@@ -38,7 +38,7 @@ function(recreated_goon_generate targetname)
     PARSE_ARGV
     1
     PARSED_ARGS
-    "IGNORE_ERRORS;NO_ADD_CLANG_INCLUDES"
+    "NO_IGNORE_ERRORS;NO_ADD_CLANG_INCLUDES"
     "OUTPUT_DIRECTORY"
     "FILES"
   )
@@ -96,7 +96,8 @@ function(recreated_goon_generate targetname)
     )
     list(APPEND optional_args --extra-arg-before=-I${clang_builtin_include_path}/include)
   endif()
-  if(PARSED_ARGS_IGNORE_ERRORS)
+  if(PARSED_ARGS_NO_IGNORE_ERRORS)
+  else()
     list(APPEND optional_args --ignore-errors)
   endif()
 
