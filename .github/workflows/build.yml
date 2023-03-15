@@ -21,7 +21,7 @@ jobs:
         with:
           submodules: recursive
       - name: install tools ubuntu
-        run: sudo apt-get -y update && sudo apt-get -y install llvm-dev libclang-dev clang g++ cmake
+        run: sudo apt-get -y update && sudo apt-get -y install llvm llvm-dev libclang-dev libclang-cpp-dev clang g++ cmake
         if: ${{ contains(matrix.os, 'ubuntu' )}}
       - name: install tools windows
         uses: aminya/setup-cpp@v1
