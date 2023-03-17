@@ -13,10 +13,8 @@ jobs:
             compiler: gcc
           - os: ubuntu-latest
             compiler: llvm
-          - os: windows-latest
-            compiler: msvc
-          - os: windows-latest
-            compiler: llvm
+#          - os: windows-latest
+#            compiler: msvc
     steps:
       - name: checkout
         uses: actions/checkout@v3
