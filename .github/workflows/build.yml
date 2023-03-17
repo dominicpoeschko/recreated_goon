@@ -15,12 +15,22 @@ jobs:
             compiler: llvm
           - os: windows-latest
             compiler: msvc
+          - os: windows-latest
+            compiler: llvm
     steps:
       - name: checkout
         uses: actions/checkout@v3
         with:
           submodules: recursive
       - name: setup
+        if: ${{ contains(matrix.compiler, 'llvm' )}}
+        uses: aminya/setup-cpp@v1
+        with:
+          compiler: ${{ matrix.compiler }}
+          vcvarsall: ${{ contains(matrix.os, 'windows' )}}
+          cmake: true
+      - name: setup
+        if: ${{ !contains(matrix.compiler, 'llvm' )}}
         uses: aminya/setup-cpp@v1
         with:
           compiler: ${{ matrix.compiler }}
