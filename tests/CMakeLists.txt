@@ -1,4 +1,4 @@
-find_package(PythonInterp 3 REQUIRED)
+find_package(Python3 COMPONENTS Interpreter REQUIRED)
 
 get_target_property(build_dir recreated_goon_generator BINARY_DIR)
 
