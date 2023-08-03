@@ -11,5 +11,5 @@ endif()
 
 add_test(
   NAME simple_file_test
-  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/simple_file_test.py
+  COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/simple_file_test.py
           ${recreated_goon_generator_bin})
